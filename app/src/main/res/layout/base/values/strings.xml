@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 状态视图  -->
+    <string name="loading">加载中...</string>
+    <string name="text_empty">还没有数据呢！</string>
+    <string name="text_nonet">网络异常！</string>
+    <string name="text_retry">点击重试</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+</resources>
