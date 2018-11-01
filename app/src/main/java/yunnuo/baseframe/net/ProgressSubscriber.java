@@ -34,6 +34,7 @@ public abstract class ProgressSubscriber<T extends BaseResponse> implements Prog
         if (mHandler != null) {
             mHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG).sendToTarget();
 
+
         }
     }
 
