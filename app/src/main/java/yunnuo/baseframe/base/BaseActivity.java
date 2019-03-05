@@ -42,7 +42,7 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initSwipeBackFinish();
+//        initSwipeBackFinish();
         super.onCreate(savedInstanceState);
         mRootView = createView(null, null, savedInstanceState);
         setContentView(mRootView);

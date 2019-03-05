@@ -1,6 +1,7 @@
 package yunnuo.baseframe.net.download;
 
 import android.app.IntentService;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -41,8 +42,17 @@ public class DownloadService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+//        NotificationCompat.Builder mBuilder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel chan1 = new NotificationChannel("static", "Primary Channel", NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(chan1);
+            notificationBuilder = new NotificationCompat.Builder(this, "static");
+        } else {
+            notificationBuilder = new NotificationCompat.Builder(this);
+        }
+
+//        notificationBuilder = new NotificationCompat.Builder(this)
+        notificationBuilder.setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("下载")
                 .setContentText("下载中...")
                 .setAutoCancel(true);
@@ -130,6 +140,7 @@ public class DownloadService extends IntentService {
             Uri contentUri = FileProvider.getUriForFile(getApplicationContext(),
                     BuildConfig.APPLICATION_ID + ".fileProvider", outputFile);
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         } else {
             intent.setDataAndType(Uri.fromFile(outputFile), "application/vnd.android.package-archive");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
